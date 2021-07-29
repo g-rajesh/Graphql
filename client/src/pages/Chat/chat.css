@@ -1,0 +1,378 @@
+.chat {
+     width: 100%;
+     height: 100vh;
+}
+
+.chat header {
+     width: 100%;
+     height: 70px;
+     background: #0040ff;
+     display: flex;
+     justify-content: space-between;
+     align-items: center;
+     padding: 0 6rem;
+}
+
+.chat header .logo {
+     display: flex;
+     align-items: center;
+}
+
+.chat header .logo .chatIcon {
+     font-size: 1.5rem;
+     margin-right: 1rem;
+     font-weight: 600;
+     color: #fff;
+}
+
+.chat header .logo p {
+     font-size: 1.4rem;
+     color: #fff;
+     font-weight: 600;
+}
+
+.chat header .details {
+     display: flex;
+     align-items: center;
+}
+
+.chat header .details p {
+     margin-right: 1.5rem;
+     font-size: 1.1rem;
+     font-weight: 600;
+     color: #fff;
+}
+
+.chat header .details button {
+     border: 0;
+     outline: 0;
+     background: transparent;
+     width: 35px;
+     height: 35px;
+     border-radius: 50%;
+     background-color: #fff;
+}
+
+.chat header .details button .logoutIcon {
+     color: hsl(0, 0%, 10%);
+     font-size: 1.1rem;
+     font-weight: 600;
+     cursor: pointer;
+}
+
+.chat header.user {
+     display: flex;
+     justify-content: unset;
+     padding: 0 7rem;
+}
+
+header.user .profile-details h3 {
+     text-transform: capitalize;
+     font-size: 1.1rem;
+     color: #fff;
+}
+
+header.user .profile-details span {
+     font-size: 0.75rem;
+     color: hsl(131, 58%, 61%);
+     font-weight: 600;
+}
+
+.chat header.user .leftIcon {
+     color: #fff;
+     font-size: 1.1rem;
+     margin-right: 1rem;
+}
+
+.chat-box {
+     width: 100%;
+     height: calc(100vh - 70px);
+     display: flex;
+}
+
+.chat-box .users {
+     width: 25%;
+     height: 100%;
+     min-width: 350px;
+     border-right: 1px solid #ccc;
+     padding: 1rem;
+     overflow-y: auto;
+}
+
+.chat-box .users > h2 {
+     margin-bottom: 1rem;
+     color: hsl(0, 0%, 10%);
+}
+
+.chat-box .users .user {
+     display: flex;
+     justify-content: space-between;
+     align-items: center;
+     padding: 1rem;
+     border-radius: 6px;
+     margin-bottom: 0.35rem;
+     cursor: pointer;
+}
+
+.users .user.active,
+.users .user:hover {
+     background-color: hsl(0, 0%, 95%);
+}
+
+.users .user .profile {
+     display: flex;
+     align-items: center;
+}
+
+.user .profile span {
+     display: block;
+     width: 40px;
+     height: 40px;
+     line-height: 40px;
+     background: #0040ff;
+     color: #fff;
+     border-radius: 50%;
+     text-align: center;
+     margin-right: 1rem;
+     position: relative;
+     font-weight: 600;
+     font-size: 0.9rem;
+}
+
+.user .profile span::before {
+     content: "";
+     position: absolute;
+     right: 0;
+     top: 0;
+     width: 10px;
+     height: 10px;
+     border-radius: 50%;
+     background: hsl(131, 55%, 40%);
+     border: 1px solid #fff;
+}
+
+.user .details h3 {
+     font-size: 1.1rem;
+     text-transform: capitalize;
+}
+
+.user .details p {
+     color: hsl(0, 0%, 70%);
+     font-size: 0.9rem;
+}
+
+.user span.timing {
+     align-self: flex-end;
+     font-size: 0.875rem;
+     color: hsl(0, 0%, 70%);
+}
+
+.chat-box .messages {
+     width: 75%;
+     display: flex;
+     flex-direction: column;
+}
+
+.chat-box .messages .message {
+     padding: 2rem;
+     height: 90%;
+     overflow-y: auto;
+     display: flex;
+     flex-direction: column-reverse;
+}
+
+.chat-box .messages .message .user {
+     margin: 1rem 0;
+     display: grid;
+     grid-template-columns: 70%;
+}
+
+.messages .message .user.right {
+     justify-items: end;
+     justify-content: end;
+}
+
+.messages .message .user.left {
+     justify-items: start;
+     justify-content: start;
+}
+
+.message .user p {
+     padding: 0.4rem 1.1rem;
+     font-weight: 500;
+}
+
+.message .user.right p {
+     background-color: #0040ff;
+     color: #fff;
+     border-radius: 10px 10px 0 10px;
+}
+
+.message .user.left p {
+     background-color: #f2f2f2;
+     color: #333;
+     border-radius: 10px 10px 10px 0;
+}
+
+.chat-box .messages .message > .alert {
+     text-align: center;
+     font-size: 1.2rem;
+     color: #333;
+}
+
+.chat-box .messages .sendForm {
+     height: 10%;
+     width: 100%;
+     padding: 0 2rem;
+     overflow: auto;
+     display: flex;
+     align-items: center;
+     justify-content: center;
+}
+
+.sendForm .formContent {
+     width: 100%;
+     position: relative;
+}
+
+.sendForm .formContent input {
+     border: 0;
+     background-color: #f2f2f2;
+     color: #333;
+     border-radius: 40px;
+     width: 100%;
+     outline: 0;
+     padding: 0.9rem 1.1rem;
+     font-size: 1.1rem;
+}
+
+.sendForm .formContent button {
+     border: 0;
+     position: absolute;
+     top: 50%;
+     right: 1.1rem;
+     transform: translateY(-50%);
+     width: 2.2rem;
+     height: 2.2rem;
+     border-radius: 50%;
+     background-color: hsl(225, 100%, 60%);
+     display: flex;
+     align-items: center;
+     justify-content: center;
+     cursor: pointer;
+}
+
+.formContent button .sendIcon {
+     font-size: 1.275rem;
+     color: #fff;
+}
+
+@media only screen and (max-width: 768px) {
+     .chat header {
+          padding: 0 3rem;
+     }
+
+     .chat-box .messages {
+          width: 100%;
+     }
+
+     .chat-box .messages .message {
+          padding: 1rem 2rem;
+     }
+
+     .chat-box .users {
+          padding: 2rem 7rem;
+          width: 100%;
+          border-right: 0;
+     }
+
+     .chat-box .users.none {
+          display: none;
+     }
+
+     .chat-box .users.display {
+          display: block;
+     }
+
+     .chat-box .messages.none {
+          display: none;
+     }
+     .chat-box .messages.display {
+          display: flex;
+     }
+
+     .chat header.user {
+          padding: 0 2rem;
+     }
+}
+
+@media only screen and (max-width: 600px) {
+     .chat-box .users {
+          padding: 2rem 1rem;
+          width: 100%;
+          border-right: 0;
+     }
+
+     .chat-box .users h2 {
+          font-size: 1.25rem;
+     }
+}
+
+@media only screen and (max-width: 500px) {
+     .chat header,
+     .chat header.user {
+          padding: 0 2rem;
+     }
+
+     .chat header .logo .chatIcon {
+          font-size: 1.1rem;
+     }
+
+     .chat header .logo p {
+          font-size: 1.2rem;
+     }
+
+     .chat header .details p {
+          font-size: 1rem;
+     }
+
+     .chat header .details button {
+          width: 30px;
+          height: 30px;
+     }
+
+     .chat header .details button .logoutIcon {
+          font-size: 0.975rem;
+     }
+
+     .chat-box .messages .message {
+          padding: 1rem;
+     }
+
+     .message .user p {
+          padding: 0.3rem 0.875rem;
+          font-size: 0.9rem;
+     }
+
+     .chat-box .messages .sendForm {
+          padding: 0 1rem;
+     }
+
+     .sendForm .formContent input {
+          padding: 0.7rem 1.15rem;
+          font-size: 0.9rem;
+     }
+
+     .sendForm .formContent button {
+          width: 1.75rem;
+          height: 1.75rem;
+     }
+
+     .formContent button .sendIcon {
+          font-size: 1rem;
+     }
+
+     .chat-box .messages .message > .alert {
+          font-size: 1rem;
+     }
+}
