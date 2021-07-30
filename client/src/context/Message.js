@@ -56,14 +56,15 @@ const messageReducer = (state, action) => {
 
           case SET_SEND_MESSAGES:
                newUsers = state.users.map((user) => {
-                    if (user.username === action.payload.username)
+                    if (user.username === action.payload.username) {
                          return {
                               ...user,
-                              messages: [
-                                   action.payload.message,
-                                   ...user.messages,
-                              ],
+                              messages: user.messages
+                                   ? [action.payload.message, ...user.messages]
+                                   : null,
+                              latestMessage: action.payload.message,
                          };
+                    }
                     return user;
                });
 

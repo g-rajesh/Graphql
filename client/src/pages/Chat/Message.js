@@ -6,10 +6,8 @@ import { useAuthState } from "../../context/auth";
 import { useMessageState, useMessageDispatch } from "../../context/Message";
 import GET_MESSAGES from "../../queries/getMessages";
 import SEND_MESSAGE from "../../queries/sendMessage";
-import {
-     SET_USER_MESSAGES,
-     SET_SEND_MESSAGES,
-} from "../../context/actionCreators";
+import { SET_USER_MESSAGES } from "../../context/actionCreators";
+import SingleMessage from "./SingleMessage";
 
 const Message = ({ width }) => {
      const [msg, setMsg] = useState("");
@@ -23,7 +21,7 @@ const Message = ({ width }) => {
                     dispatch({
                          type: SET_USER_MESSAGES,
                          payload: {
-                              username: selectedUser.username,
+                              username: selectedUser?.username,
                               messages: data.getMessages,
                          },
                     });
@@ -32,14 +30,6 @@ const Message = ({ width }) => {
           }
      );
      const [sendMessage] = useMutation(SEND_MESSAGE, {
-          onCompleted: (data) =>
-               dispatch({
-                    type: SET_SEND_MESSAGES,
-                    payload: {
-                         username: selectedUser.username,
-                         message: data.sendMessage,
-                    },
-               }),
           onError: (err) => console.log(err),
      });
 
@@ -62,7 +52,7 @@ const Message = ({ width }) => {
                     variables: { from: selectedUser.username },
                });
           }
-     }, [selectedUser]);
+     }, [selectedUser, getUserMessages]);
 
      let messages;
      if (messagesLoading && !selectedUser) messages = <p>loading...</p>;
@@ -71,17 +61,11 @@ const Message = ({ width }) => {
      else if (selectedUser?.messages?.length > 0)
           messages = selectedUser?.messages?.map((message) => {
                return (
-                    <div
+                    <SingleMessage
                          key={message.uuid}
-                         className
-                         className={
-                              message.from === user.username
-                                   ? "user right"
-                                   : "user left"
-                         }
-                    >
-                         <p>{message.content}</p>
-                    </div>
+                         message={message}
+                         user={user}
+                    />
                );
           });
      else messages = <p className="alert">Select a friend to start chat</p>;

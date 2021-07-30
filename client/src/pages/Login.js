@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Link, useHistory } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { BsChatDots } from "react-icons/bs";
 import { useLazyQuery } from "@apollo/client";
 
@@ -19,7 +19,6 @@ const Login = () => {
           username: "",
           password: "",
      });
-     const history = useHistory();
      const dispatch = useAuthDispatch();
 
      const [loginUser, { loading }] = useLazyQuery(LoginQuery, {
@@ -32,7 +31,7 @@ const Login = () => {
                console.log(res);
 
                dispatch({ type: LOGIN, payload: res.login });
-               history.push("/");
+               window.location.href = "/";
           },
           onError: (err) => setErrors(err.graphQLErrors[0].extensions.errors),
      });
