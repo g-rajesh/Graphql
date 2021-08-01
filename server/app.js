@@ -9,8 +9,6 @@ const jwt = require("jsonwebtoken");
 const { sequelize } = require("./models/index");
 const typeDefs = require("./graphql/typeDefs");
 const resolvers = require("./graphql/resolvers");
-const contextMiddleware = require("./Util/contextMiddleware");
-const { PORT, JWT_TOKEN } = require("./config/env.json");
 
 (async function () {
      const app = express();
@@ -33,9 +31,13 @@ const { PORT, JWT_TOKEN } = require("./config/env.json");
                }
 
                if (token) {
-                    jwt.verify(token, JWT_TOKEN, (err, decodedToken) => {
-                         context.user = decodedToken;
-                    });
+                    jwt.verify(
+                         token,
+                         process.env.JWT_TOKEN,
+                         (err, decodedToken) => {
+                              context.user = decodedToken;
+                         }
+                    );
                }
 
                return context;
@@ -59,9 +61,13 @@ const { PORT, JWT_TOKEN } = require("./config/env.json");
                               )[1];
                     }
                     if (token) {
-                         jwt.verify(token, JWT_TOKEN, (err, decodedToken) => {
-                              user = decodedToken;
-                         });
+                         jwt.verify(
+                              token,
+                              process.env.JWT_TOKEN,
+                              (err, decodedToken) => {
+                                   user = decodedToken;
+                              }
+                         );
                     }
                     return { user };
                },
@@ -69,9 +75,9 @@ const { PORT, JWT_TOKEN } = require("./config/env.json");
           { server: httpServer, path: server.graphqlPath }
      );
 
-     httpServer.listen(PORT, () => {
+     httpServer.listen(process.env.PORT, () => {
           console.log(
-               `Server is now running on http://localhost:${PORT}/graphql`
+               `Server is now running on http://localhost:${process.env.PORT}/graphql`
           );
           sequelize
                .authenticate()

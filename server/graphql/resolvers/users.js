@@ -7,7 +7,6 @@ const {
 } = require("apollo-server-express");
 
 const { Message, User } = require("../../models");
-const { JWT_TOKEN } = require("../../config/env.json");
 
 module.exports = {
      Query: {
@@ -86,7 +85,7 @@ module.exports = {
                          {
                               username,
                          },
-                         JWT_TOKEN,
+                         process.env.JWT_TOKEN,
                          { expiresIn: "1h" }
                     );
 

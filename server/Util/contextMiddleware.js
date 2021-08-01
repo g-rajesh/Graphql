@@ -1,5 +1,4 @@
 const jwt = require("jsonwebtoken");
-const { JWT_TOKEN } = require("../config/env.json");
 
 module.exports = (context) => {
      let token;
@@ -12,7 +11,7 @@ module.exports = (context) => {
      ) {
           token = context.connection.context.authorization.split("Bearer ")[1];
      }
-     jwt.verify(token, JWT_TOKEN, (err, decodedToken) => {
+     jwt.verify(token, process.env.JWT_TOKEN, (err, decodedToken) => {
           context.user = decodedToken;
      });
 
